@@ -1,0 +1,296 @@
+1. WAP to find the duplicates present in an array.
+
+import java.util.*;
+
+public class DuplicateFinder {
+    public static void main(String[] args) {
+        int[] array = { 1, 2, 3, 4, 4, 5, 6, 7, 7, 8, 9, 9, 9 };
+
+        // Create a HashSet to store unique elements
+        Set<Integer> uniqueElements = new HashSet<>();
+        // Create a HashSet to store duplicate elements
+        Set<Integer> duplicateElements = new HashSet<>();
+
+        for (int num : array) {
+            if (!uniqueElements.add(num)) {
+                duplicateElements.add(num);
+            }
+        }
+
+        System.out.println("Duplicate elements in the array: " + duplicateElements);
+    }
+}
+
+Duplicate elements in the array: [9, 4, 7]
+
+
+2. WAP to sort an array using Quick Sort Algorithm.
+
+public class QuickSort {
+    public static void main(String[] args) {
+        int[] array = { 7, 2, 1, 6, 8, 5, 3, 4 };
+        
+        System.out.println("Original Array:");
+        printArray(array);
+
+        quickSort(array, 0, array.length - 1);
+
+        System.out.println("\nSorted Array:");
+        printArray(array);
+    }
+
+    public static void quickSort(int[] array, int low, int high) {
+        if (low < high) {
+            int pivotIndex = partition(array, low, high);
+            quickSort(array, low, pivotIndex - 1);
+            quickSort(array, pivotIndex + 1, high);
+        }
+    }
+
+    public static int partition(int[] array, int low, int high) {
+        int pivot = array[high];
+        int i = low - 1;
+
+        for (int j = low; j < high; j++) {
+            if (array[j] < pivot) {
+                i++;
+                swap(array, i, j);
+            }
+        }
+
+        swap(array, i + 1, high);
+        return i + 1;
+    }
+
+    public static void swap(int[] array, int i, int j) {
+        int temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+    }
+
+    public static void printArray(int[] array) {
+        for (int num : array) {
+            System.out.print(num + " ");
+        }
+    }
+}
+
+Original Array:
+7 2 1 6 8 5 3 4 
+
+Sorted Array:
+1 2 3 4 5 6 7 8
+
+
+3. WAP to sort an array using Bubble Sort Algorithm.
+
+public class BubbleSort {
+    public static void main(String[] args) {
+        int[] array = { 7, 2, 1, 6, 8, 5, 3, 4 };
+
+        System.out.println("Original Array:");
+        printArray(array);
+
+        bubbleSort(array);
+
+        System.out.println("\nSorted Array:");
+        printArray(array);
+    }
+
+    public static void bubbleSort(int[] array) {
+        int n = array.length;
+
+        for (int i = 0; i < n - 1; i++) {
+            for (int j = 0; j < n - i - 1; j++) {
+                if (array[j] > array[j + 1]) {
+                    swap(array, j, j + 1);
+                }
+            }
+        }
+    }
+
+    public static void swap(int[] array, int i, int j) {
+        int temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+    }
+
+    public static void printArray(int[] array) {
+        for (int num : array) {
+            System.out.print(num + " ");
+        }
+    }
+}
+
+Original Array:
+7 2 1 6 8 5 3 4 
+
+Sorted Array:
+1 2 3 4 5 6 7 8
+
+
+4. WAP to sort an array using Merge Sort Algorithm.
+
+public class MergeSort {
+    public static void main(String[] args) {
+        int[] array = { 7, 2, 1, 6, 8, 5, 3, 4 };
+
+        System.out.println("Original Array:");
+        printArray(array);
+
+        mergeSort(array, 0, array.length - 1);
+
+        System.out.println("\nSorted Array:");
+        printArray(array);
+    }
+
+    public static void mergeSort(int[] array, int left, int right) {
+        if (left < right) {
+            int mid = (left + right) / 2;
+            mergeSort(array, left, mid);
+            mergeSort(array, mid + 1, right);
+            merge(array, left, mid, right);
+        }
+    }
+
+    public static void merge(int[] array, int left, int mid, int right) {
+        int n1 = mid - left + 1;
+        int n2 = right - mid;
+
+        int[] leftArray = new int[n1];
+        int[] rightArray = new int[n2];
+
+        for (int i = 0; i < n1; i++) {
+            leftArray[i] = array[left + i];
+        }
+        for (int j = 0; j < n2; j++) {
+            rightArray[j] = array[mid + 1 + j];
+        }
+
+        int i = 0, j = 0, k = left;
+
+        while (i < n1 && j < n2) {
+            if (leftArray[i] <= rightArray[j]) {
+                array[k] = leftArray[i];
+                i++;
+            } else {
+                array[k] = rightArray[j];
+                j++;
+            }
+            k++;
+        }
+
+        while (i < n1) {
+            array[k] = leftArray[i];
+            i++;
+            k++;
+        }
+
+        while (j < n2) {
+            array[k] = rightArray[j];
+            j++;
+            k++;
+        }
+    }
+
+    public static void printArray(int[] array) {
+        for (int num : array) {
+            System.out.print(num + " ");
+        }
+    }
+}
+
+Original Array:
+7 2 1 6 8 5 3 4 
+
+Sorted Array:
+1 2 3 4 5 6 7 8
+
+
+5. WAP to sort an array using Selection Sort Algorithm.
+
+public class SelectionSort {
+    public static void main(String[] args) {
+        int[] array = { 7, 2, 1, 6, 8, 5, 3, 4 };
+
+        System.out.println("Original Array:");
+        printArray(array);
+
+        selectionSort(array);
+
+        System.out.println("\nSorted Array:");
+        printArray(array);
+    }
+
+    public static void selectionSort(int[] array) {
+        int n = array.length;
+
+        for (int i = 0; i < n - 1; i++) {
+            int minIndex = i;
+
+            for (int j = i + 1; j < n; j++) {
+                if (array[j] < array[minIndex]) {
+                    minIndex = j;
+                }
+            }
+
+            swap(array, i, minIndex);
+        }
+    }
+
+    public static void swap(int[] array, int i, int j) {
+        int temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+    }
+
+    public static void printArray(int[] array) {
+        for (int num : array) {
+            System.out.print(num + " ");
+        }
+    }
+}
+
+Original Array:
+7 2 1 6 8 5 3 4 
+
+Sorted Array:
+1 2 3 4 5 6 7 8
+
+6. WAP to check whether an array is a subset of another array.
+
+import java.util.*;
+
+public class SubsetChecker {
+    public static void main(String[] args) {
+        int[] array1 = { 1, 2, 3, 4, 5 };
+        int[] array2 = { 3, 1, 5 };
+
+        boolean isSubset = checkSubset(array1, array2);
+
+        if (isSubset) {
+            System.out.println("array2 is a subset of array1");
+        } else {
+            System.out.println("array2 is not a subset of array1");
+        }
+    }
+
+    public static boolean checkSubset(int[] array1, int[] array2) {
+        Set<Integer> set1 = new HashSet<>();
+        Set<Integer> set2 = new HashSet<>();
+
+        for (int num : array1) {
+            set1.add(num);
+        }
+
+        for (int num : array2) {
+            set2.add(num);
+        }
+
+        return set1.containsAll(set2);
+    }
+}
+
+array2 is a subset of array1
+
+
