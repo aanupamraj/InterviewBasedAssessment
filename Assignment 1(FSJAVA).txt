@@ -1,0 +1,53 @@
+1.Write a program(WAP) to print INEURON using pattern programming logic.
+
+public class IneuronPattern {
+    public static void main(String[] args) {
+        String[][] pattern = {
+            {"I", " ", " ", " ", " ", " ", " ", " "},
+            {" ", "N", " ", " ", " ", " ", " ", "N"},
+            {" ", " ", "E", " ", " ", " ", "E", " "},
+            {" ", " ", " ", "U", " ", "U", " ", " "},
+            {" ", " ", " ", " ", "R", " ", " ", " "},
+            {" ", " ", " ", " ", " ", "O", " ", " "},
+            {" ", " ", " ", " ", " ", " ", "N", " "},
+        };
+        
+        for (int i = 0; i < pattern.length; i++) {
+            for (int j = 0; j < pattern[i].length; j++) {
+                System.out.print(pattern[i][j]);
+            }
+            System.out.println();
+        }
+    }
+}
+
+I       
+ N      N
+  E    E
+   U  U
+    R
+     O
+      N
+
+
+2. Write a program to print
+1 1 1 1
+2 2 2 2
+3 3 3 3
+4 4 4 4
+
+Ans
+public class NumberPattern {
+    public static void main(String[] args) {
+        int rows = 4;
+        int columns = 4;
+
+        for (int i = 1; i <= rows; i++) {
+            for (int j = 1; j <= columns; j++) {
+                System.out.print(i + " ");
+            }
+            System.out.println();
+        }
+    }
+}
+
