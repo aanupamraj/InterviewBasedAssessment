@@ -1,0 +1,63 @@
+Q) Enhance the Guesser Game Project which you have learnt in live class. Add the maximum feature you could add to it.
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+import java.util.Scanner;
+
+public class GuesserGame {
+    private int minNum;
+    private int maxNum;
+    private int targetNumber;
+    private int numAttempts;
+    private List<Integer> guessedNumbers;
+
+    public GuesserGame(int minNum, int maxNum) {
+        this.minNum = minNum;
+        this.maxNum = maxNum;
+        this.targetNumber = new Random().nextInt(maxNum - minNum + 1) + minNum;
+        this.numAttempts = 0;
+        this.guessedNumbers = new ArrayList<>();
+    }
+
+    public boolean validateGuess(int guess) {
+        if (guess < minNum || guess > maxNum) {
+            return false;
+        }
+        if (guessedNumbers.contains(guess)) {
+            return false;
+        }
+        return true;
+    }
+
+    public void play() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Welcome to the Guesser Game! Guess a number between " + minNum + " and " + maxNum + ".");
+        while (true) {
+            System.out.print("Enter your guess: ");
+            int guess = scanner.nextInt();
+            if (!validateGuess(guess)) {
+                System.out.println("Invalid guess. Please try again.");
+                continue;
+            }
+
+            numAttempts++;
+            guessedNumbers.add(guess);
+
+            if (guess == targetNumber) {
+                System.out.println("Congratulations! You guessed the correct number in " + numAttempts + " attempts.");
+                break;
+            } else if (guess < targetNumber) {
+                System.out.println("Too low! Try guessing a higher number.");
+            } else {
+                System.out.println("Too high! Try guessing a lower number.");
+            }
+        }
+        scanner.close();
+    }
+
+    public static void main(String[] args) {
+        GuesserGame game = new GuesserGame(1, 100);
+        game.play();
+    }
+}
